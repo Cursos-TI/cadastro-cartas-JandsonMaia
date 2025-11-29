@@ -30,7 +30,7 @@ int main() {
     printf("Área (km²): ");
     scanf("%f", &carta1.area);
 
-    printf("PIB: ");
+    printf("PIB: "); 
     scanf("%f", &carta1.pib);
 
     printf("Número de Pontos Turísticos: ");
