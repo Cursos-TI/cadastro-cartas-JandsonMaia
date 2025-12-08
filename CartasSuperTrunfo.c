@@ -16,7 +16,9 @@ int main() {
     // Novas Variáveis
     float desindade1, desindade2;   
     float pibPerCapita1, pibPerCapita2;
-
+    float superPoder1, superPoder2;
+    float inversoDensidade1, inversoDensidade2;
+    int resultadoPopulacao, resultadoArea, resultadoPIB, resultadoTuristicos, resultadoPIBpcapita, resultadoDensidade, resultadoSuperPoder;  
 
     printf("\n===== Cadastro da Carta 1 =====\n");
 
@@ -74,6 +76,10 @@ int main() {
     pibPerCapita1 = (float)carta1.pib / carta1.populacao;
     pibPerCapita2 = (float)carta2.pib / carta2.populacao;
 
+    // ----- Novos Cálculos (Super Poder) -----
+
+    inversoDensidade1 = (float)1 / desindade1;
+    inversoDensidade2 = (float)1 / desindade2;
 
     // Exibe os dados cadastrados
     printf("\n===== Dados das Cartas Cadastradas =====\n");
@@ -99,6 +105,47 @@ int main() {
     printf("Pontos Turísticos: %d\n", carta2.pontosTuristicos);
     printf("Desindade Populacional: %.2f hab/km²\n", desindade2);
     printf("Pib per Capita: %.2f reais\n", pibPerCapita2);
+
+    // Cálculo do super poder
+    superPoder1 = carta1.populacao +
+                  carta1.area +
+                  carta1.pib +
+                  carta1.pontosTuristicos +
+                  pibPerCapita1 +
+                  ((float)1 / desindade1);
+
+    superPoder2 = carta2.populacao +
+                  carta2.area +
+                  carta2.pib +
+                  carta2.pontosTuristicos +
+                  pibPerCapita2 +
+                  ((float)1 / desindade2);
+
+    // Comparações das Cartas
+
+    resultadoPopulacao   = (carta1.populacao > carta2.populacao);
+    resultadoArea  = (carta1.area > carta2.area);
+    resultadoPIB   = (carta1.pib > carta2.pib);
+    resultadoTuristicos = (carta1.pontosTuristicos > carta2.pontosTuristicos);
+    resultadoPIBpcapita = (pibPerCapita1 > pibPerCapita2);
+
+     // Densidade: MENOR vence
+    resultadoDensidade = (desindade1 < desindade2);
+
+    // Super Poder: MAIOR vence
+    resultadoSuperPoder = (superPoder1 > superPoder2);
+
+    // ====== EXIBIÇÃO DAS COMPARAÇÕES ======
+
+    printf("\n===== Comparação Entre as Cartas =====\n");
+
+    printf("População: Carta 1 vence? %d\n", resultadoPopulacao);
+    printf("Área: Carta 1 vence? %d\n", resultadoArea);
+    printf("PIB: Carta 1 vence? %d\n", resultadoPIB);
+    printf("Pontos Turísticos: Carta 1 vence? %d\n", resultadoTuristicos);
+    printf("Densidade Populacional (menor vence): Carta 1 vence? %d\n", resultadoDensidade);
+    printf("PIB per Capita: Carta 1 vence? %d\n", resultadoPIBpcapita);
+    printf("SUPER PODER: Carta 1 vence? %d\n", resultadoSuperPoder);
 
     return 0;
 
